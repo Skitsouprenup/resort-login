@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import LoginLinks from './loginlinks';
 
@@ -6,11 +6,10 @@ import loginformstyle from '../../css/forms/loginform.scss';
 
 const loginForm = 
 ({ changeDivHeight } : {changeDivHeight : Function}) => {
-    const divref = useRef<HTMLDivElement>(null);
 
     useEffect(() => { 
         const divHeightUpdate = () => {
-            changeDivHeight(divref);
+            changeDivHeight();
         };
 
         window.addEventListener('resize', divHeightUpdate);
@@ -19,7 +18,7 @@ const loginForm =
 
     return(
 
-        <div id={loginformstyle.cboxContent} ref={divref}>
+        <div id={loginformstyle.cboxContent}>
             <label>Login to your account</label>
             <input type='text' id='username' placeholder='Username' />
             <input type='password' id='password' placeholder='Password' />

@@ -9,7 +9,7 @@ import LightBoxResp from './lightboxresp';
 const LightBoxLogin = ({toggleLightBox} : {toggleLightBox: Function}) => {
     
     const BaseComp = ({classname} : {classname: string}) => {
-        const[divHeight, setDivHeight] = useState('');
+        const[divHeight, setDivHeight] = useState('auto');
         const divref = useRef<HTMLDivElement>(null);
 
         /*
@@ -22,16 +22,19 @@ const LightBoxLogin = ({toggleLightBox} : {toggleLightBox: Function}) => {
             Also, this function updates the height of fixed div whereas
             applyHeightUpdate updates the height of relative div
         */
-        const changeDivHeight = (childDivRef : RefObject<HTMLDivElement>) => {
+        const changeDivHeight = () => {
             const vpHeight = document.documentElement.clientHeight;
 
-            if(divref.current !== null && childDivRef.current !== null) {
+            if(divref.current !== null) {
                 //console.log(vpHeight + ' | ' + divref.current.scrollHeight)
-                if(vpHeight >= divref.current.scrollHeight)
-                    setDivHeight('auto');
-                        
-                else 
-                setDivHeight('100vh');
+                if(vpHeight >= divref.current.scrollHeight){
+                    if(divref.current.style.height !== 'auto')
+                        setDivHeight('auto');
+                }
+                else {
+                    if(divref.current.style.height === 'auto')
+                        setDivHeight('100vh');
+                }
                           
             }
         };

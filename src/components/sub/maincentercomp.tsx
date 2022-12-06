@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useContext, useState, useLayoutEffect }  from 'react';
 
 import centerpagestyle from '../../css/sub/mainpagecentersubcomp.scss';
+import globalstyles from '../../css/globalstyles.scss';
 
 import mainlogo from '../../images/beach-resort-logo.png';
 
@@ -38,12 +39,16 @@ const MainCenterComp = () => {
                 //console.log(divref.current.style.height)
                 //console.log(vpHeight + ' | ' + divref.current.scrollHeight)
                 //alert(vpHeight + ' | ' + divref.current.scrollHeight)
-                if(vpHeight >= divref.current.scrollHeight)
-                    if(divHeight !== divref.current.style.height)
+                if(vpHeight >= divref.current.scrollHeight){
+                    if(divref.current.style.height === 'auto')
                         setDivHeight('100vh');
-                else 
-                    if(divHeight !== divref.current.style.height)
-                    setDivHeight('auto');
+                }
+                
+                        
+                else {
+                    if(divref.current.style.height !== 'auto')
+                        setDivHeight('auto');
+                }       
                 
             }
         }
@@ -87,10 +92,10 @@ const MainCenterComp = () => {
         }, [divHeight]);
 
         return(
-        <div className={classname} ref={divref}>
+        <div className={classname} ref={divref} style={{border: '1px border black'}}>
                 <div style={{margin: '5px'}}>
-                    <img src={mainlogo}
-                         style={{maxWidth: '600px', maxHeight: '500px'}}
+                    <img src={mainlogo} className={globalstyles.responsiveblockimg}
+                         style={{maxWidth: '600px', maxHeight: '500px', width: '100%'}}
                          alt="fancy logo" />
                     <MainPageLinks />
                     <div style={{margin: '10px 0'}}>
