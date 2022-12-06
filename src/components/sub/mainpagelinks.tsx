@@ -29,7 +29,7 @@ const MainPageLinks = () => {
                          className={globalstyles.responsiveinlblockimg}
                          style={{maxWidth: '230px', maxHeight: '80px', width: '100%'}} />
                 </Link>
-                <a href="http://" 
+                <Link to="/" 
                    onClick={() => {
                         if(dtcontextref.toggleLightBox !== null)
                             dtcontextref.toggleLightBox()
@@ -37,7 +37,7 @@ const MainPageLinks = () => {
                     <img src={loginbutton}  
                          className={globalstyles.responsiveinlblockimg}
                          style={{maxWidth: '230px', maxHeight: '80px', width: '100%'}} />
-                </a>
+                </Link>
             </div>
         );
     };
