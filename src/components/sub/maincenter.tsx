@@ -18,6 +18,7 @@ const MainCenter = ({toggleLightBox} : {toggleLightBox: Function}) => {
         }
      };
 
+    {/*Monitors browser size in order to switch device type */}
     useEffect(() => {
         const updateStateOnResize = () => {
             updateState();

@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useContext }  from 'react';
+import React, { useEffect, useRef, useContext, useState, useLayoutEffect }  from 'react';
 
 import centerpagestyle from '../../css/sub/mainpagecentersubcomp.scss';
-import globalstyles from '../../css/globalstyles.scss';
 
 import mainlogo from '../../images/beach-resort-logo.png';
 
@@ -11,6 +10,11 @@ import { DEVICE_TYPE, deviceAndComp} from '../util/typealiases/devicetype';
 import GetComponent from '../mediaqueries/respcompfunc';
 
 const MainCenterComp = () => {
+    /*We should re-render everytime we change element's attribute
+      like height. Otherwise, we may experience unexpected output
+      like jerky images.*/
+    const[divHeight, setDivHeight] = useState('auto');
+
     const mccontextref = useContext(ToggleLightBoxContext);
     const divref = useRef<HTMLDivElement>(null);
     let imgCount : number | undefined = undefined ;
@@ -34,10 +38,12 @@ const MainCenterComp = () => {
                 //console.log(divref.current.style.height)
                 //console.log(vpHeight + ' | ' + divref.current.scrollHeight)
                 //alert(vpHeight + ' | ' + divref.current.scrollHeight)
-                
                 if(vpHeight >= divref.current.scrollHeight)
-                    divref.current.style.height = '100vh';
-                else divref.current.style.height = 'auto';
+                    if(divHeight !== divref.current.style.height)
+                        setDivHeight('100vh');
+                else 
+                    if(divHeight !== divref.current.style.height)
+                    setDivHeight('auto');
                 
             }
         }
@@ -75,17 +81,22 @@ const MainCenterComp = () => {
             return () => window.removeEventListener('resize', updateHeightOnResize);
         },[]);
 
+        useLayoutEffect(() => {
+            if(divref.current !== null)
+                divref.current.style.height = divHeight;
+        }, [divHeight]);
+
         return(
         <div className={classname} ref={divref}>
                 <div style={{margin: '5px'}}>
-                    <img src={mainlogo} className={globalstyles.responsiveblockimg}
-                         style={{maxWidth: '600px', maxHeight: '500px', width: '100%'}}
+                    <img src={mainlogo}
+                         style={{maxWidth: '600px', maxHeight: '500px'}}
                          alt="fancy logo" />
                     <MainPageLinks />
-                   <div style={{margin: '10px 0'}}>
-                    <div style={{textAlign: 'center'}}><a href="https://www.freepik.com/free-vector/abstract-waves-logo-concept-set-nine_8865999.htm">Image by starline</a> on Freepik</div>
-                    <div style={{textAlign: 'center'}}><a href="https://www.freepik.com/free-vector/logo-icon-sunset_30500162.htm?query=beach%20resort%20logo#from_view=detail_alsolike">Image by nuart_design</a> on Freepik</div>
-                    <div style={{textAlign: 'center'}}><a href="https://www.pexels.com/photo/cottages-in-the-middle-of-beach-753626/">Photo by Julius Silver</a> from Pexels</div>
+                    <div style={{margin: '10px 0'}}>
+                        <div style={{textAlign: 'center'}}><a href="https://www.freepik.com/free-vector/abstract-waves-logo-concept-set-nine_8865999.htm">Image by starline</a> on Freepik</div>
+                        <div style={{textAlign: 'center'}}><a href="https://www.freepik.com/free-vector/logo-icon-sunset_30500162.htm?query=beach%20resort%20logo#from_view=detail_alsolike">Image by nuart_design</a> on Freepik</div>
+                        <div style={{textAlign: 'center'}}><a href="https://www.pexels.com/photo/cottages-in-the-middle-of-beach-753626/">Photo by Julius Silver</a> from Pexels</div>
                    </div>
                 </div>
         </div>);
