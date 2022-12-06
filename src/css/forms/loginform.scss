@@ -1,0 +1,64 @@
+@use './_loginformmixins.scss' as form-mixins;
+
+#cboxContent{ 
+    height: auto;
+    width: 95%;
+    margin: auto;
+    //border: 1px solid black;
+
+    label {
+        display:block;
+        font-weight: bold; 
+        margin-bottom:20px;
+        padding-top: 10px;
+        color:gray;
+        text-align: center;
+    }
+
+    input[type='text'], input[type='password'] { 
+        font-size: 1.2em;
+        padding: 10px 0;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 2px 0;
+        outline: none;
+
+        &:focus {
+            outline: rgb(87, 113, 242) solid 2px;
+        }
+    }
+
+    .forgotPass {
+        @include form-mixins.forgot-pass;
+        float: right;
+    }
+
+    .forgotPassSm {
+        @include form-mixins.forgot-pass;
+    }
+
+    .loginlink {
+        @include form-mixins.login-link;
+    }
+
+    .linksdiv {
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 20px;
+    }
+
+    .linksdivSm {
+        text-align: center;
+        height: 15px;
+        white-space: nowrap;
+        margin: 5px 0;
+    }
+
+    #xpass {
+        color: red;
+        text-align: center;
+        height: 15px;
+    }
+}

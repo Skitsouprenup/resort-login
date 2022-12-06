@@ -1,0 +1,25 @@
+/*
+  partials reference: 
+  https://sass-lang.com/documentation/at-rules/import#partials
+*/
+
+@mixin forgot-pass {
+    font-style:italic;
+    text-decoration:none;
+    color:black;
+
+    &:hover {
+        text-decoration:underline;
+        font-size:1.02em;
+    }
+}
+
+@mixin login-link {
+    font-family: Verdana;
+    text-decoration:none;
+    color: black;
+
+    &:hover {
+        font-weight:bold;
+    }
+}

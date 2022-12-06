@@ -1,0 +1,24 @@
+@use './centersubcompmixins' as center-comp-mixins;
+
+@mixin center-component {
+    position: fixed;
+    @include center-comp-mixins.center-component;
+
+    background-color: rgba(189, 179, 179, 0.7);
+    border-color: white;
+    border-style: ridge;
+    height: 100%;
+
+    z-index: 1;
+}
+
+.centersubcomp {
+    @include center-component;
+    width: 75%;
+}
+
+.centersubcompSm {
+    @include center-component;
+    width: 100%;
+}
+
