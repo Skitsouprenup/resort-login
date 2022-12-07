@@ -9,4 +9,7 @@ import 'normalize.css';
 
 const root = ReactDOM.createRoot(document.getElementById("app-root") as HTMLElement);
 
-root.render(<MainPage />);
+root.render(
+<React.StrictMode>
+    <MainPage />
+</React.StrictMode>);
