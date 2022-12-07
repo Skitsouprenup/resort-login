@@ -44,7 +44,6 @@ const MainCenterComp = () => {
                         setDivHeight('100vh');
                 }
                 
-                        
                 else {
                     if(divref.current.style.height !== 'auto')
                         setDivHeight('auto');
