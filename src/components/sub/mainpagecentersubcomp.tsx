@@ -13,14 +13,14 @@ const CenterSubComponent = () => {
     };
 
     return(
-    <>
+    <div className={centerpagestyle.background}
+         style={{overflow: 'scroll'}}>
         {!hideLightBox && (
         <div>
             <LightBoxLogin toggleLightBox={toggleLightBox}/>
         </div>)}
-        <div className={centerpagestyle.background}></div>
         <MainCenter toggleLightBox={toggleLightBox}/>
-    </>);
+    </div>);
 }
 
 export default CenterSubComponent;
